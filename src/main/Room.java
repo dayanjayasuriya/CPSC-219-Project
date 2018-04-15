@@ -1,10 +1,10 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * Class that handles everything related to the rooms of the grid map.
- * Last Edited by Dayan - 27 Mar 2018
  */
-public class Room {
+public class Room implements Serializable{
   private int roomNumber = 0;
   private Door aDoor = new Door();
   //no door in tileList
@@ -23,7 +23,7 @@ public class Room {
   /**
    * Copy constructor for Room class.
    *
-   * @param roomToCopy the room to be copied.
+   * @param toBeCopied the room to be copied as type Room.
    */
   public Room(Room toBeCopied) {
     roomNumber = toBeCopied.getRoomsNumber();
@@ -40,8 +40,14 @@ public class Room {
     return roomNumber;
   }
 
+  /**
+  * Method to get a copy of the tiles in an arraylist.
+  *
+  * @return newList are the tiles in an arraylist of type ArrayList<Tile>
+  */
   public ArrayList<Tile> getTileList() {
     ArrayList<Tile> newList = new ArrayList<Tile>();
+    // Loop through the tileList and add each one to the newList arraylist.
     for (int i = 0; i < tileList.size(); i++) {
       newList.add(new Tile(tileList.get(i)));
     }
@@ -51,8 +57,8 @@ public class Room {
   /**
    * Method to add a Tile to the tile list
    *
-   * @param row the row the tile is on the grid as an int.
-   * @param col the column the tile is on the grid as an int.
+   * @param row the row the tile is on in the grid as an int.
+   * @param col the column the tile is on in the grid as an int.
    */
   public void addTile(int row, int col) {
     tileList.add(new Tile(row, col));
@@ -74,7 +80,7 @@ public class Room {
   /**
    * Method to Get the door of the room
    *
-   * @return aDoor the door of the room of type Door
+   * @return aDoor a copy of the door of the room of type Door
    */
   public Door getDoor() {
     return new Door(aDoor);
